@@ -7,19 +7,23 @@ class Game {
   private:
     sf::RenderWindow* window;
     sf::Event sfEvent;
+    int world[10][10];
 
     // Initialisers
     void initWindow();
+    void initWorld();
 
   public:
-    // Constructor
+    // Constructor and Destructor
     Game();
+    virtual ~Game();
 
     // Update Functions
     void updateSFMLEvents();
     void update();
 
     // Render Functions
+    void renderWorld();
     void render();
 
     // Functions

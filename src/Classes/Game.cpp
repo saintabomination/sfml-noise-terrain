@@ -9,11 +9,28 @@ void Game::initWindow()
   this->window->setVerticalSyncEnabled(false);
 }
 
-// Constructor
+void Game::initWorld()
+{
+  for (int y = 0; y < 10; y++)
+  {
+    for (int x = 0; x < 10; x++)
+    {
+      this->world[y][x] = x % 2;
+    }
+  }
+}
+
+// Constructor and Destructor
 
 Game::Game()
 {
   this->initWindow();
+  this->initWorld();
+}
+
+Game::~Game()
+{
+  delete this->window;
 }
 
 // Update Functions
@@ -41,9 +58,34 @@ void Game::update()
 
 // Render Functions
 
+void Game::renderWorld()
+{
+  for (int y = 0; y < 10; y++)
+  {
+    for (int x = 0; x < 10; x++)
+    {
+      sf::RectangleShape tile(sf::Vector2f(10.f, 10.f));
+      tile.setPosition(sf::Vector2f(x * 10.f, y * 10.f));
+
+      if (world[y][x] == 1)
+      {
+        tile.setFillColor(sf::Color::Blue);
+      }
+      else
+      {
+        tile.setFillColor(sf::Color::Green);
+      }
+
+      this->window->draw(tile);
+    }
+  }
+}
+
 void Game::render()
 {
-
+  this->window->clear();
+  this->renderWorld();
+  this->window->display();
 }
 
 // Functions
