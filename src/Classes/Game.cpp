@@ -11,11 +11,11 @@ void Game::initWindow()
 
 void Game::initWorld()
 {
-  for (int y = 0; y < 10; y++)
+  for (int y = 0; y < 60; y++)
   {
-    for (int x = 0; x < 10; x++)
+    for (int x = 0; x < 80; x++)
     {
-      this->world[y][x] = x % 2;
+      this->world[y][x] = rand() % 2;
     }
   }
 }
@@ -60,9 +60,9 @@ void Game::update()
 
 void Game::renderWorld()
 {
-  for (int y = 0; y < 10; y++)
+  for (int y = 0; y < 60; y++)
   {
-    for (int x = 0; x < 10; x++)
+    for (int x = 0; x < 80; x++)
     {
       sf::RectangleShape tile(sf::Vector2f(10.f, 10.f));
       tile.setPosition(sf::Vector2f(x * 10.f, y * 10.f));
