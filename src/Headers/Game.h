@@ -2,12 +2,13 @@
 #define GAME_H
 
 #include "../Headers.h"
+#include "PerlinNoise.hpp"
 
 class Game {
   private:
     sf::RenderWindow* window;
     sf::Event sfEvent;
-    int world[80][60];
+    float world[160][120];
 
     // Initialisers
     void initWindow();

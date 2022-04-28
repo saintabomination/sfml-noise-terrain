@@ -11,11 +11,13 @@ void Game::initWindow()
 
 void Game::initWorld()
 {
-  for (int y = 0; y < 60; y++)
+  const siv::PerlinNoise perlin;
+
+  for (int y = 0; y < 120; y++)
   {
-    for (int x = 0; x < 80; x++)
+    for (int x = 0; x < 160; x++)
     {
-      this->world[y][x] = rand() % 2;
+      this->world[y][x] = (float)(perlin.octave2D_01(x * 0.1f, y * 0.1f, 4));
     }
   }
 }
@@ -60,14 +62,14 @@ void Game::update()
 
 void Game::renderWorld()
 {
-  for (int y = 0; y < 60; y++)
+  for (int y = 0; y < 120; y++)
   {
-    for (int x = 0; x < 80; x++)
+    for (int x = 0; x < 160; x++)
     {
-      sf::RectangleShape tile(sf::Vector2f(10.f, 10.f));
-      tile.setPosition(sf::Vector2f(x * 10.f, y * 10.f));
+      sf::RectangleShape tile(sf::Vector2f(5.f, 5.f));
+      tile.setPosition(sf::Vector2f(x * 5.f, y * 5.f));
 
-      if (world[y][x] == 1)
+      if (world[y][x] > 0.5f)
       {
         tile.setFillColor(sf::Color::Blue);
       }

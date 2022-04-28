@@ -5,8 +5,6 @@
 #include <SFML/Graphics.hpp>
 
 // Other
-#include <ctime>
-#include <cstdlib>
 #include <iostream>
 
 #endif // HEADERS_H
