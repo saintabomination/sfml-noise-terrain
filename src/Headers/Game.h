@@ -8,7 +8,7 @@ class Game {
   private:
     sf::RenderWindow* window;
     sf::Event sfEvent;
-    float world[160][120];
+    float world[600][800];
 
     // Initialisers
     void initWindow();

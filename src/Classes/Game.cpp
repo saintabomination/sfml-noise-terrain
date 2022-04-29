@@ -27,11 +27,11 @@ void Game::initWorld()
 {
   const siv::PerlinNoise perlin;
 
-  for (int y = 0; y < 120; y++)
+  for (int y = 0; y < 600; y++)
   {
-    for (int x = 0; x < 160; x++)
+    for (int x = 0; x < 800; x++)
     {
-      this->world[y][x] = (float)(perlin.octave2D_01(x * 0.1f, y * 0.1f, 4));
+      this->world[y][x] = (float)(perlin.octave2D_01(x * 0.01f, y * 0.01f, 4));
     }
   }
 }
@@ -76,20 +76,43 @@ void Game::update()
 
 void Game::renderWorld()
 {
-  for (int y = 0; y < 120; y++)
+  for (int y = 0; y < 600; y++)
   {
-    for (int x = 0; x < 160; x++)
+    for (int x = 0; x < 800; x++)
     {
-      sf::RectangleShape tile(sf::Vector2f(5.f, 5.f));
-      tile.setPosition(sf::Vector2f(x * 5.f, y * 5.f));
+      sf::RectangleShape tile(sf::Vector2f(1.f, 1.f));
+      tile.setPosition(sf::Vector2f(x, y));
 
-      if (world[y][x] > 0.5f)
+      if (world[y][x] < 0.2f)
       {
-        tile.setFillColor(sf::Color::Blue);
+        tile.setFillColor(sf::Color(14, 37, 107));
       }
-      else
+      else if (world[y][x] < 0.45f)
       {
-        tile.setFillColor(sf::Color::Green);
+        tile.setFillColor(sf::Color(20, 52, 150));
+      }
+      else if (world[y][x] < 0.5f)
+      {
+        tile.setFillColor(sf::Color(199, 201, 68));
+      }
+      else if (world[y][x] < 0.6f)
+      {
+        tile.setFillColor(sf::Color(41, 135, 71));
+      }
+      else if (world[y][x] < 0.75f)
+      {
+        tile.setFillColor(sf::Color(21, 89, 43));
+      }
+      else if (world[y][x] < 0.85f)
+      {
+        tile.setFillColor(sf::Color(140, 140, 140));
+      }
+      else if (world[y][x] < 0.95f)
+      {
+        tile.setFillColor(sf::Color(170, 170, 170));
+      }
+      else {
+        tile.setFillColor(sf::Color(240, 240, 240));
       }
 
       this->window->draw(tile);
