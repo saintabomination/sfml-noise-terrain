@@ -9,6 +9,7 @@ void Game::initWindow()
   unsigned int windowHeight = 300;
   unsigned int windowFPS = 60;
 
+  // Loading Wwindow Config
   std::ifstream configFile("src/Config/Window.ini");
   if (!configFile.is_open())
   {
@@ -25,11 +26,16 @@ void Game::initWindow()
 
 void Game::initWorld()
 {
-  const siv::PerlinNoise perlin;
+  // Randomising Seed with Time
+  srand(time(NULL));
+
+  const siv::PerlinNoise::seed_type seed = rand() % 32768;
+  const siv::PerlinNoise perlin {seed};
   float NOISE_SCALE_X = 0.01f;
   float NOISE_SCALE_Y = 0.01f;
   unsigned int NOISE_OCTAVES = 2;
 
+  // Loading Noise Config
   std::ifstream configFile("src/Config/Noise.ini");
   if (!configFile.is_open())
   {
@@ -96,7 +102,7 @@ void Game::renderWorld()
       sf::RectangleShape tile(sf::Vector2f(1.f, 1.f));
       tile.setPosition(sf::Vector2f(x, y));
 
-      if (world[y][x] < 0.2f)
+      if (world[y][x] < 0.4f)
       {
         tile.setFillColor(sf::Color(14, 37, 107));
       }

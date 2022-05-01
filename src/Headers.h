@@ -5,6 +5,9 @@
 #include <SFML/Graphics.hpp>
 
 // Other
+#include <cstdlib>
+#include <stdlib.h>
+#include <time.h>
 #include <string>
 #include <fstream>
 #include <iostream>
