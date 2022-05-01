@@ -26,12 +26,25 @@ void Game::initWindow()
 void Game::initWorld()
 {
   const siv::PerlinNoise perlin;
+  float NOISE_SCALE_X = 0.01f;
+  float NOISE_SCALE_Y = 0.01f;
+  unsigned int NOISE_OCTAVES = 2;
+
+  std::ifstream configFile("src/Config/Noise.ini");
+  if (!configFile.is_open())
+  {
+    std::cout << "ERROR::GAME::CANT_LOAD_NOISE_CONFIG" << std::endl;
+  }
+  else
+  {
+    configFile >> NOISE_SCALE_X >> NOISE_SCALE_Y >> NOISE_OCTAVES;
+  }
 
   for (int y = 0; y < 600; y++)
   {
     for (int x = 0; x < 800; x++)
     {
-      this->world[y][x] = (float)(perlin.octave2D_01(x * 0.01f, y * 0.01f, 4));
+      this->world[y][x] = (float)(perlin.octave2D_01(x * NOISE_SCALE_X, y * NOISE_SCALE_Y, NOISE_OCTAVES));
     }
   }
 }
